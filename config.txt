@@ -1,0 +1,10 @@
+config.txt,searchlist.txtはexeと同ディレクトリにおいてください。
+
+config start
+
+path             :C:\Users\hisayoshi\textSearcher\test
+recursive        :1
+fileName         :*.bat
+No-fileMatch     :0
+
+config end
