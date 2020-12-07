@@ -35,7 +35,7 @@ for i, conLine in enumerate(conLdlines):
 
 #  検索ワードの読み込み
 sWords = []
-sLd = codecs.open('search_list.txt','r', 'utf-8')
+sLd = codecs.open('search_list.txt','r', 'utf-8', errors='ignore')
 sLdlines = sLd.readlines()
 sLd.close()
 
@@ -43,7 +43,7 @@ for i, conLine in enumerate(sLdlines):
     sWords.append(conLine.strip())
 
 file = 'result/result_' + datetime.datetime.now().strftime('%Y%m%d-%H%M%S') + '.txt'
-fileobj = codecs.open(file, 'w', encoding = 'utf_8')    
+fileobj = codecs.open(file, 'w', encoding = 'utf_8', errors='ignore')    
     
 #  検索のメイン処理
 filePath = path +  rec + fileName
@@ -57,10 +57,11 @@ if noMatch =='1' :
 match = 0
 for word in sWords:
     print('\r\n検索文字列： ', word, file=fileobj)
+    print('\r\n検索中： ', word)
     for sFile in files:
         if noMatch =='1' and sFile.find(word) >=0 :
             continue
-        ld = codecs.open(sFile,'r','utf-8')
+        ld = codecs.open(sFile,'r','utf-8', errors='ignore')
         ldlines = ld.readlines()
         ld.close()
         for i, line in enumerate(ldlines): 
@@ -69,6 +70,9 @@ for word in sWords:
                match +=1 
 
 #  完了表示
+print('\r\n',match,'検索完了。Enterでアプリを閉じます。')
 print('\r\n',match,'件　一致しました。', file=fileobj)
 fileobj.close()
+
+input()
 
